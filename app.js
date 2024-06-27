@@ -1,9 +1,8 @@
-//V.1.5
+//V.1.6
 let numeroSecreto = 0;
 let intentos = 0;
 let listaNumerosSorteados = [];
 let numeroMaximo = 10;
-
 
 
 function asignarTextoElemento(elemento, texto) {
@@ -15,20 +14,26 @@ function asignarTextoElemento(elemento, texto) {
 function verificarIntento() {
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
     
-    if (numeroDeUsuario === numeroSecreto) {
-        asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos === 1) ? 'vez' : 'veces'}`);
-        document.getElementById('reiniciar').removeAttribute('disabled');
-    } else {
-        //El usuario no acertó.
-        if (numeroDeUsuario > numeroSecreto) {
-            asignarTextoElemento('p','El número secreto es menor');
-        } else {
-            asignarTextoElemento('p','El número secreto es mayor');
-        }
-        intentos++;
+    // Validacion del Input del Usuario
+    if (isNaN(numeroDeUsuario) || numeroDeUsuario < 1 || numeroDeUsuario > 10) {
+        asignarTextoElemento('p',`Ingresaste ${numeroDeUsuario}.Por favor, ingresa un número entre 1 y 10.`);
         limpiarCaja();
-    }
-    return;
+        }else{
+        if (numeroDeUsuario === numeroSecreto) {
+            asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos === 1) ? 'vez' : 'veces'}`);
+            document.getElementById('reiniciar').removeAttribute('disabled');
+        } else {
+            //El usuario no acertó.
+            if (numeroDeUsuario > numeroSecreto) {
+                asignarTextoElemento('p','El número secreto es menor');
+            } else {
+                asignarTextoElemento('p','El número secreto es mayor');
+            }
+            intentos++;
+            limpiarCaja();
+        }
+        }
+        return;
 }
 
 function limpiarCaja() {
@@ -65,9 +70,7 @@ function condicionesIniciales() {
 function reiniciarJuego() {
     //limpiar caja
     limpiarCaja();
-    //Indicar mensaje de intervalo de números 
-    //Generar el número aleatorio
-    //Inicializar el número intentos
+    //Indicar mensaje de intervalo de números, generar el número aleatorio, inicializar el número intentos
     condicionesIniciales();
     //Deshabilitar el botón de nuevo juego
     document.querySelector('#reiniciar').setAttribute('disabled','true');
