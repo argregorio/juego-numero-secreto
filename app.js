@@ -16,7 +16,7 @@ function verificarIntento() {
     
     // Validacion del Input del Usuario
     if (isNaN(numeroDeUsuario) || numeroDeUsuario < 1 || numeroDeUsuario > 10) {
-        asignarTextoElemento('p',`Ingresaste ${numeroDeUsuario}.Por favor, ingresa un número entre 1 y 10.`);
+        asignarTextoElemento('p',`Ingresaste ${numeroDeUsuario}. Por favor, ingresa un número entre 1 y 10.`);
         limpiarCaja();
         }else{
         if (numeroDeUsuario === numeroSecreto) {
