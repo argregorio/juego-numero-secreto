@@ -1,3 +1,4 @@
+//V.1.5
 let numeroSecreto = 0;
 let intentos = 0;
 let listaNumerosSorteados = [];
